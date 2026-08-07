@@ -23,18 +23,29 @@ def scan_prompt(request: PromptRequest):
 
     safe_prompt = rewrite_prompt(redacted)
 
-    risk = "LOW"
+    count = len(entities)
 
-    if len(entities) > 0:
+    if count == 0:
+        risk = "LOW"
+
+    elif count <= 2:
+        risk = "MEDIUM"
+
+    else:
         risk = "HIGH"
 
     entity_objects = [
-        Entity(
-            type=e["type"],
-            text=e["text"]
-        )
-        for e in entities
-    ]
+
+    Entity(
+        type=e["type"],
+        text=e["text"],
+        start=e["start"],
+        end=e["end"]
+    )
+
+    for e in entities
+
+]
 
     return PromptResponse(
         risk=risk,

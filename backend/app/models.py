@@ -10,6 +10,8 @@ class PromptRequest(BaseModel):
 class Entity(BaseModel):
     type: str
     text: str
+    start: int
+    end: int
 
 
 class PromptResponse(BaseModel):
