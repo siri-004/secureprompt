@@ -8,7 +8,7 @@ const API = axios.create({
 });
 
 export const scanPrompt = async (prompt) => {
-  const response = await API.post("/scan", {
+  const response = await API.post("/api/scan", {
     prompt: prompt,
   });
 
